@@ -44,8 +44,6 @@ jobs:
            -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/  
 
       # Check the Quality Gate status.
-      - name: Create report-task-https.txt with changed urls
-        run:  sed -i s/http\:/https\:/g build/sonar/report-task.txt
       - name: SonarQube Quality Gate check
         id: sonarqube-quality-gate-check
         uses: sonarsource/sonarqube-quality-gate-action@master
@@ -54,5 +52,3 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_URL }} #OPTIONAL
-        with:
-          scanMetadataReportFile: build/sonar/report-task.txt
